@@ -1,5 +1,5 @@
 ISO Language Names  Code
-Abkhazian	ab
+Abkhazian   ab
 Afar	aa
 Afrikaans	af
 Akan	ak

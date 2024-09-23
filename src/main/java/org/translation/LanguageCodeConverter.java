@@ -1,7 +1,7 @@
 package org.translation;
 
 import org.json.JSONObject;
-
+import java.util.Arrays;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -59,9 +59,13 @@ public class LanguageCodeConverter {
         while (data.hasNext()) {
             // Access the next element
             String line = data.next();
-            if (line.contains(code)) {
-                return line.split(" ")[0];
+            String[] parts = line.strip().split("\t");
+            for (String part : parts) {
+                if (part.equals(code)) {
+                    return parts[0];
+                }
             }
+
         }
         return null;
     }
@@ -78,7 +82,7 @@ public class LanguageCodeConverter {
             // Access the next element
             String line = data.next();
             if (line.contains(language)) {
-                return line;
+                return line.split("\t")[1];
             }
         }
         return null;
@@ -92,9 +96,10 @@ public class LanguageCodeConverter {
     public int getNumLanguages() {
         int count = 0;
         while (data.hasNext()) {
+            data.next();
             // Access the next element
             count++;
         }
-        return count;
+        return count - 1;
     }
 }
