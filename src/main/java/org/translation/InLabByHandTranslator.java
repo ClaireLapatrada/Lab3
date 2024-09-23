@@ -2,6 +2,7 @@ package org.translation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 // TODO Task: modify this class so that it also supports the Spanish language code "es" and
 //            one more language code of your choice. Each member of your group should add
@@ -21,17 +22,22 @@ public class InLabByHandTranslator implements Translator {
      * @param country the country
      * @return list of language abbreviations which are available for this country
      */
+
+    public static final String CANADA = "can";
+    private static final Map<String, String> TRANSLATIONS = Map.of(
+            "de", "Kanada",
+            "en", "Canada",
+            "zh", "加拿大",
+            "es", "Canadá"
+    );
+
     @Override
     public List<String> getCountryLanguages(String country) {
-        // TODO Checkstyle: The String "can" appears 4 times in the file.
-        if ("can".equals(country)) {
-            return new ArrayList<>(List.of("de", "en", "zh"));
+        if (CANADA.equals(country)) {
+            return new ArrayList<>(List.of("de", "en", "zh", "es"));
         }
         return new ArrayList<>();
     }
-
-    // TODO Checkstyle: Static variable definition in wrong order.
-    public static final String CANADA = "can";
 
     /**
      * Returns the country abbreviations for all countries whose translations are
@@ -41,7 +47,7 @@ public class InLabByHandTranslator implements Translator {
      */
     @Override
     public List<String> getCountries() {
-        return new ArrayList<>(List.of("can"));
+        return new ArrayList<>(List.of(CANADA));
     }
 
     /**
@@ -51,24 +57,10 @@ public class InLabByHandTranslator implements Translator {
      * @param language the language
      * @return the name of the country in the given language or null if no translation is available
      */
+
     @Override
     public String translate(String country, String language) {
-        // TODO Checkstyle: Return count is 5 (max allowed for non-void methods/ lambdas is 2).
-        // TODO Checkstyle: String literal expressions should be on the left side of an equals comparison
-        if (!country.equals("can")) {
-            return null;
-        }
-        if (language.equals("de")) {
-            return "Kanada";
-        }
-        else if (language.equals("en")) {
-            return "Canada";
-        }
-        else if ("zh".equals(language)) {
-            return "加拿大";
-        }
-        else {
-            return null;
-        }
+        // Fetch the translation from the map, or return null if not found
+        return TRANSLATIONS.getOrDefault(language, null);
     }
 }
