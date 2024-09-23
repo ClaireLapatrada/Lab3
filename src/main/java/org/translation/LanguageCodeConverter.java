@@ -1,15 +1,11 @@
 package org.translation;
 
-import org.json.JSONObject;
-import java.util.Arrays;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class provides the service of converting language codes to their names.
@@ -21,7 +17,7 @@ public class LanguageCodeConverter {
      * in the resources folder.
      */
 
-    public static Iterator<String> data;
+    private static Iterator<String> data;
 
     public LanguageCodeConverter() {
         this("language-codes.txt");

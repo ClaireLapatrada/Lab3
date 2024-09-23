@@ -50,17 +50,18 @@ public class JSONTranslationExample {
 
     public String getCountryNameTranslation(String countryCode, String languageCode) {
         try {
+            String translatedText = "";
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject line = jsonArray.getJSONObject(i);
                 if (line.getString("alpha3").equals(countryCode.toLowerCase())) {
-                    return line.getString(languageCode);
+                    translatedText = line.getString(languageCode);
                 }
             }
+            return translatedText;
         }
         catch (JSONException ex) {
             return "Country not found";
         }
-        return null;
     }
     /**
      * Prints the Spanish translation of Canada.
