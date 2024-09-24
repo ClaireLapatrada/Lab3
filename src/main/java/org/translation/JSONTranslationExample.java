@@ -14,6 +14,7 @@ import org.json.JSONObject;
  */
 public class JSONTranslationExample {
 
+    public static final int CANADA_INDEX = 30;
     private final JSONArray jsonArray;
 
     // Note: CheckStyle is configured so that we are allowed to omit javadoc for constructors
@@ -36,8 +37,7 @@ public class JSONTranslationExample {
      * @return the Spanish translation of Canada
      */
     public String getCanadaCountryNameSpanishTranslation() {
-        final int canadaIndex = 30;
-        JSONObject canada = jsonArray.getJSONObject(canadaIndex);
+        JSONObject canada = jsonArray.getJSONObject(CANADA_INDEX);
         return canada.getString("es");
     }
 
@@ -50,7 +50,7 @@ public class JSONTranslationExample {
 
     public String getCountryNameTranslation(String countryCode, String languageCode) {
         try {
-            String translatedText = "";
+            String translatedText = "Country not found";
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject line = jsonArray.getJSONObject(i);
                 if (line.getString("alpha3").equals(countryCode.toLowerCase())) {
